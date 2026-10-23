@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>경제성장 문제 탐구실 | 6학년 사회</title>
+<style>
+:root{--navy:#172554;--blue:#2563eb;--ink:#172033;--muted:#64748b;--line:#e2e8f0;--bg:#f4f7fb;--green:#0f766e;--gold:#b45309}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+.wrap{max-width:1080px;margin:auto;padding:22px 18px 48px}
+.hero{background:linear-gradient(125deg,#172554,#1d4ed8);color:#fff;border-radius:24px;padding:30px 28px;position:relative;overflow:hidden;box-shadow:0 12px 32px #17255422}
+.eyebrow{font-size:12px;letter-spacing:.14em;font-weight:800;color:#bfdbfe}.hero h1{font-size:clamp(28px,5vw,42px);margin:8px 0 10px;line-height:1.2}.hero p{color:#e0e7ff;margin:0;max-width:760px}.orb{position:absolute;width:170px;height:170px;border-radius:50%;background:#ffffff12;right:-28px;top:-36px}.orb:after{content:"";position:absolute;width:95px;height:95px;border:2px solid #ffffff40;border-radius:50%;right:42px;top:62px}
+.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:18px;box-shadow:0 5px 18px #0f172a08}
+.section-head{display:flex;align-items:center;gap:10px;margin-bottom:12px}.num{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;background:#dbeafe;color:#1d4ed8;font-weight:800;flex-shrink:0}.section-head h2{font-size:19px;margin:0}.sub{font-size:14px;color:var(--muted);margin:3px 0 16px}
+.groups{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}.group-btn{border:1px solid var(--line);border-radius:13px;background:#fff;padding:13px 8px;cursor:pointer;font-weight:750;color:#334155;transition:.15s}.group-btn small{display:block;font-weight:500;color:var(--muted);font-size:11px;margin-top:3px}.group-btn.active{border-color:var(--blue);background:#eff6ff;color:#1d4ed8;box-shadow:0 0 0 2px #bfdbfe}
+.problem-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:15px;padding:18px;display:flex;gap:14px;align-items:flex-start}.problem-icon{font-size:28px;flex-shrink:0}.problem-box h3{margin:0 0 5px;font-size:20px;color:#9a3412}.problem-box p{margin:0;color:#7c2d12}
+.explore-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.explore-card{border:1px solid var(--line);border-radius:16px;padding:17px;background:#fff}.explore-head{display:flex;align-items:center;gap:9px;margin-bottom:8px}.explore-icon{font-size:23px}.explore-card h3{font-size:17px;margin:0}.explore-card p{font-size:14px;color:#475569;margin:0 0 10px}.prompt{background:#f8fafc;border-radius:10px;padding:11px 13px;font-size:13px;color:#334155;margin-bottom:10px}.prompt strong{display:block;margin-bottom:4px;color:#1e293b}.field label{display:block;font-weight:700;font-size:14px;margin-bottom:7px}.field textarea{width:100%;min-height:125px;border:1px solid #cbd5e1;border-radius:12px;padding:12px;font:inherit;resize:vertical;outline:none}.field textarea:focus{border-color:var(--blue);box-shadow:0 0 0 3px #dbeafe}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.btn{border:0;border-radius:12px;padding:12px 17px;font:inherit;font-weight:750;cursor:pointer}.primary{background:var(--blue);color:white}.secondary{background:#f1f5f9;color:#334155}.status{font-size:13px;color:var(--green);font-weight:700;margin-top:10px;min-height:20px}.footer{text-align:center;color:#94a3b8;font-size:12px;padding:22px 0 0}
+@media(max-width:720px){.groups{grid-template-columns:repeat(2,minmax(0,1fr))}.groups .group-btn:last-child{grid-column:span 2}.explore-grid{grid-template-columns:1fr}.hero{padding:24px 20px}.panel{padding:17px}}
+@media print{body{background:#fff}.wrap{max-width:none;padding:0}.hero{box-shadow:none}.panel{box-shadow:none;break-inside:avoid}.groups,.actions{display:none}.explore-grid{grid-template-columns:repeat(2,1fr)}textarea{min-height:100px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="orb"></div>
+    <div class="eyebrow">SOCIAL STUDIES · GRADE 6</div>
+    <h1>경제성장 문제 탐구실</h1>
+    <p>경제 발달 과정에서 어떤 문제들이 생길까요?<br>우리 모둠이 맡은 문제의 원인과 실제 사례, 영향을 탐구하고 문제가 계속될 때의 모습을 생각해 봅시다.</p>
+  </header>
+
+  <section class="panel">
+    <div class="section-head"><div class="num">1</div><h2>우리 모둠의 탐구 주제 선택하기</h2></div>
+    <p class="sub">선생님이 안내한 모둠을 선택하면 탐구할 문제가 나타납니다.</p>
+    <div class="groups" id="groups"></div>
+  </section>
+
+  <section class="panel">
+    <div class="section-head"><div class="num">2</div><h2>탐구할 문제 살펴보기</h2></div>
+    <div class="problem-box">
+      <div class="problem-icon" id="problemIcon">🌍</div>
+      <div><h3 id="problemTitle">환경오염</h3><p id="problemDesc"></p></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="section-head"><div class="num">3</div><h2>모둠별 탐구 활동</h2></div>
+    <p class="sub">교과서와 자료를 살펴보며 아래 네 가지 질문에 답해 보세요. 조사한 내용을 바탕으로 모둠원과 의견을 나누고, 자신의 말로 정리합니다.</p>
+    <div class="explore-grid">
+      <article class="explore-card">
+        <div class="explore-head"><div class="explore-icon">🔎</div><h3>① 발생 원인 찾기</h3></div>
+        <p>경제 발달 과정에서 이 문제가 발생하는 이유는 무엇일까요?</p>
+        <div class="prompt"><strong>생각해 볼 점</strong><span id="causePrompt"></span></div>
+        <div class="field"><label for="cause">우리 모둠의 탐구 내용</label><textarea id="cause" placeholder="문제가 발생하는 원인을 정리해 보세요."></textarea></div>
+      </article>
+      <article class="explore-card">
+        <div class="explore-head"><div class="explore-icon">📰</div><h3>② 구체적인 사례 조사하기</h3></div>
+        <p>이 문제가 실제로 나타나는 사례에는 무엇이 있을까요?</p>
+        <div class="prompt"><strong>자료 찾기 예시</strong><span id="casePrompt"></span></div>
+        <div class="field"><label for="example">찾은 사례와 자료의 내용</label><textarea id="example" placeholder="사례가 무엇인지, 어디에서 확인했는지 적어 보세요."></textarea></div>
+      </article>
+      <article class="explore-card">
+        <div class="explore-head"><div class="explore-icon">🌱</div><h3>③ 문제의 영향 분석하기</h3></div>
+        <p>이 문제는 사람들의 생활과 사회에 어떤 영향을 미칠까요?</p>
+        <div class="prompt"><strong>생각해 볼 점</strong><span id="impactPrompt"></span></div>
+        <div class="field"><label for="impact">문제가 미치는 영향</label><textarea id="impact" placeholder="개인, 사회, 환경 등에 미치는 영향을 정리해 보세요."></textarea></div>
+      </article>
+      <article class="explore-card">
+        <div class="explore-head"><div class="explore-icon">🔮</div><h3>④ 문제가 계속된다면?</h3></div>
+        <p>문제를 해결하지 않고 그대로 둔다면 앞으로 어떤 일이 생길까요?</p>
+        <div class="prompt"><strong>생각해 볼 점</strong><span id="futurePrompt"></span></div>
+        <div class="field"><label for="future">앞으로 예상되는 결과</label><textarea id="future" placeholder="문제가 계속될 때 나타날 수 있는 모습을 구체적으로 적어 보세요."></textarea></div>
+      </article>
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="copyBtn">탐구 결과 복사하기</button>
+      <button class="btn secondary" id="printBtn">인쇄 / PDF 저장</button>
+      <button class="btn secondary" id="resetBtn">작성 내용 지우기</button>
+    </div>
+    <div class="status" id="copyStatus" aria-live="polite"></div>
+  </section>
+  <div class="footer">자료를 살펴보고 근거를 들어 이야기하며, 모둠원과 함께 문제를 깊이 탐구해요.</div>
+</div>
+<script>
+const missions = [
+ {name:"1모둠",short:"빈부격차",icon:"⚖️",desc:"경제가 성장해도 사람마다 소득과 생활 기회에 차이가 생길 수 있습니다. 소득이나 교육·주거 기회의 차이가 왜 나타나는지 살펴보세요.",
+  cause:"일자리와 소득의 차이, 교육·주거 기회, 재산의 차이 등을 살펴보세요.",
+  example:"소득 수준에 따른 생활 모습, 교육 기회나 주거 환경의 차이를 보여 주는 기사·통계·사진을 찾아보세요.",
+  impact:"사람들의 생활 수준, 교육 기회, 사회적 관계와 공정성에 어떤 영향을 주는지 생각해 보세요.",
+  future:"생활 기회의 차이가 커지면 개인의 삶과 사회의 통합에 어떤 변화가 생길지 생각해 보세요."},
+ {name:"2모둠",short:"환경오염",icon:"🌍",desc:"생산과 소비가 늘고 공장과 자동차 등 경제 활동이 활발해지면서 공기와 물, 땅이 오염될 수 있습니다. 경제 활동과 환경오염의 관계를 살펴보세요.",
+  cause:"공장과 자동차의 배출물, 쓰레기 증가, 에너지와 자원의 사용 등을 살펴보세요.",
+  example:"대기오염, 하천 오염, 플라스틱 쓰레기 등 실제 사례를 보여 주는 기사·사진·자료를 찾아보세요.",
+  impact:"사람의 건강, 동식물의 삶터, 자연환경과 일상생활에 어떤 영향을 주는지 생각해 보세요.",
+  future:"오염이 계속 쌓이면 환경과 사람들의 생활이 어떻게 달라질지 구체적으로 예상해 보세요."},
+ {name:"3모둠",short:"노사갈등",icon:"🤝",desc:"기업과 근로자는 임금, 근무 시간, 작업 환경 등에서 서로 다른 생각을 가질 수 있습니다. 노동자와 기업 사이에 갈등이 생기는 이유와 그 영향을 살펴보세요.",
+  cause:"임금과 근로 시간, 고용 안정, 안전한 작업 환경 등에서 서로 원하는 것이 어떻게 다른지 살펴보세요.",
+  example:"임금이나 근로 조건을 둘러싼 갈등, 파업이나 노사 협의 등 실제 사례를 기사에서 찾아보세요.",
+  impact:"근로자와 가족, 기업 운영, 제품과 서비스 이용자에게 어떤 영향이 생기는지 생각해 보세요.",
+  future:"갈등이 해결되지 않고 반복되면 근로자와 기업, 사회에 어떤 결과가 생길지 생각해 보세요."},
+ {name:"4모둠",short:"과소비",icon:"🛍️",desc:"필요한 정도보다 물건을 많이 사는 과소비는 가계의 부담을 키우고 자원과 에너지의 낭비로 이어질 수 있습니다. 소비가 개인과 사회에 미치는 영향을 살펴보세요.",
+  cause:"광고와 유행, 충동구매, 필요와 욕구의 혼동 등 소비가 많아지는 이유를 살펴보세요.",
+  example:"불필요한 구매, 유행에 따른 소비, 포장과 물건 폐기 증가 등을 보여 주는 기사·사진·생활 속 사례를 찾아보세요.",
+  impact:"가계 지출, 자원 낭비, 쓰레기 발생과 환경에 어떤 영향을 주는지 생각해 보세요.",
+  future:"과소비가 계속되면 개인의 경제생활과 자원·환경에 어떤 문제가 커질지 예상해 보세요."},
+ {name:"5모둠",short:"지역 격차",icon:"🏙️",desc:"경제성장이 대도시를 중심으로 이루어지면 일자리와 교육·의료·문화 시설이 일부 지역에 집중되고, 다른 지역은 생활 기회가 부족해질 수 있습니다.",
+  cause:"일자리와 기업, 학교·병원·문화 시설 등이 특정 지역에 모이는 이유를 살펴보세요.",
+  example:"도시와 농어촌, 수도권과 비수도권의 일자리·교통·교육·의료·문화 시설 차이를 보여 주는 기사·통계·사진을 찾아보세요.",
+  impact:"지역 주민의 생활, 교육과 취업 기회, 인구 이동과 지역 경제에 어떤 영향이 생기는지 생각해 보세요.",
+  future:"지역 간 차이가 계속 커지면 인구와 일자리, 지역사회 모습이 어떻게 달라질지 예상해 보세요."}
+];
+let activeMission=0;
+const groups=document.getElementById('groups');
+const fields=['cause','example','impact','future'];
+function renderGroups(){
+ groups.innerHTML='';
+ missions.forEach((m,i)=>{
+  const b=document.createElement('button');
+  b.className='group-btn'+(i===activeMission?' active':'');
+  b.innerHTML=`${m.name}<small>${m.short}</small>`;
+  b.addEventListener('click',()=>{saveCurrent();activeMission=i;renderGroups();renderMission();});
+  groups.appendChild(b);
+ });
+}
+function saveCurrent(){
+ const m=missions[activeMission];
+ fields.forEach(id=>{m[id+'Answer']=document.getElementById(id).value;});
+}
+function renderMission(){
+ const m=missions[activeMission];
+ document.getElementById('problemIcon').textContent=m.icon;
+ document.getElementById('problemTitle').textContent=m.short;
+ document.getElementById('problemDesc').textContent=m.desc;
+ document.getElementById('causePrompt').textContent=m.cause;
+ document.getElementById('casePrompt').textContent=m.example;
+ document.getElementById('impactPrompt').textContent=m.impact;
+ document.getElementById('futurePrompt').textContent=m.future;
+ fields.forEach(id=>{document.getElementById(id).value=m[id+'Answer']||'';});
+ document.getElementById('copyStatus').textContent='';
+}
+document.getElementById('copyBtn').addEventListener('click',async()=>{
+ saveCurrent();
+ const m=missions[activeMission];
+ const labels={cause:'발생 원인',example:'구체적인 사례와 자료',impact:'문제가 미치는 영향',future:'문제가 지속될 경우 예상되는 결과'};
+ const out=`[경제성장 문제 탐구실]\n모둠: ${m.name}\n탐구 주제: ${m.short}\n\n`+fields.map(id=>`${labels[id]}:\n${m[id+'Answer']||'(작성하지 않음)'}`).join('\n\n');
+ try{await navigator.clipboard.writeText(out);document.getElementById('copyStatus').textContent='탐구 결과를 복사했어요. 문서나 공유 게시판에 붙여 넣을 수 있습니다.';}
+ catch(e){const ta=document.createElement('textarea');ta.value=out;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();document.getElementById('copyStatus').textContent='탐구 결과를 복사했어요. 문서나 공유 게시판에 붙여 넣을 수 있습니다.';}
+});
+document.getElementById('printBtn').addEventListener('click',()=>{saveCurrent();window.print();});
+document.getElementById('resetBtn').addEventListener('click',()=>{
+ fields.forEach(id=>{document.getElementById(id).value='';});
+ fields.forEach(id=>{delete missions[activeMission][id+'Answer'];});
+ document.getElementById('copyStatus').textContent='선택한 모둠의 작성 내용을 지웠습니다.';
+});
+renderGroups();renderMission();
+</script>
+</body>
+</html>
