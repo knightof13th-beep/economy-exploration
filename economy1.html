@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>경제성장 문제 해결 연구소 | 6학년 사회</title>
+<style>
+:root{--navy:#172554;--blue:#2563eb;--ink:#172033;--muted:#64748b;--line:#e2e8f0;--bg:#f4f7fb;--green:#0f766e;--gold:#b45309}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;background:var(--bg);color:var(--ink);line-height:1.55}
+.wrap{max-width:1080px;margin:auto;padding:22px 18px 48px}
+.hero{background:linear-gradient(125deg,#172554,#1d4ed8);color:#fff;border-radius:24px;padding:30px 28px;position:relative;overflow:hidden;box-shadow:0 12px 32px #17255422}
+.eyebrow{font-size:12px;letter-spacing:.14em;font-weight:800;color:#bfdbfe}.hero h1{font-size:clamp(28px,5vw,42px);margin:8px 0 10px;line-height:1.2}.hero p{color:#e0e7ff;margin:0;max-width:760px}.hero .orb{position:absolute;width:170px;height:170px;border-radius:50%;background:#ffffff12;right:-28px;top:-36px}.hero .orb:after{content:"";position:absolute;width:95px;height:95px;border:2px solid #ffffff40;border-radius:50%;right:42px;top:62px}
+.panel{background:white;border:1px solid var(--line);border-radius:18px;padding:22px;margin-top:18px;box-shadow:0 5px 18px #0f172a08}
+.section-head{display:flex;align-items:center;gap:10px;margin-bottom:14px}.num{width:32px;height:32px;display:grid;place-items:center;border-radius:10px;background:#dbeafe;color:#1d4ed8;font-weight:800;flex-shrink:0}.section-head h2{font-size:19px;margin:0}.sub{font-size:14px;color:var(--muted);margin:3px 0 16px}
+.groups{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}.group-btn{border:1px solid var(--line);border-radius:13px;background:#fff;padding:13px 8px;cursor:pointer;font-weight:750;color:#334155;transition:.15s}.group-btn small{display:block;font-weight:500;color:var(--muted);font-size:11px;margin-top:3px}.group-btn.active{border-color:var(--blue);background:#eff6ff;color:#1d4ed8;box-shadow:0 0 0 2px #bfdbfe}
+.problem-box{background:#fff7ed;border:1px solid #fed7aa;border-radius:15px;padding:18px;display:flex;gap:14px;align-items:flex-start}.problem-icon{font-size:28px;flex-shrink:0}.problem-box h3{margin:0 0 5px;font-size:20px;color:#9a3412}.problem-box p{margin:0;color:#7c2d12}
+.aspects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.aspect{border:1px solid var(--line);border-radius:16px;padding:17px;background:#fff;display:flex;flex-direction:column;justify-content:space-between}.aspect-head{display:flex;align-items:center;gap:9px;margin-bottom:9px}.aspect-icon{font-size:25px}.aspect h3{font-size:17px;margin:0}.aspect p{font-size:14px;color:#475569;margin:0 0 14px}
+.resources{background:#f8fafc;border-radius:12px;padding:12px 14px;border:1px solid #edf2f7;margin-top:auto}.resources strong{display:block;font-size:13px;color:#1e293b;margin-bottom:6px}.resources ul{list-style:none;padding:0;margin:0}.resources li{margin-top:5px;font-size:13px}.resources a{color:#2563eb;text-decoration:none;font-weight:600;display:inline-flex;align-items:center;gap:4px}.resources a:hover{text-decoration:underline}
+.status{font-size:13px;color:var(--green);font-weight:700;margin-top:14px;min-height:20px}.footer{text-align:center;color:#94a3b8;font-size:12px;padding:22px 0 0}
+@media(max-width:720px){.groups{grid-template-columns:repeat(2,minmax(0,1fr))}.groups .group-btn:last-child{grid-column:span 2}.aspects{grid-template-columns:1fr}.hero{padding:24px 20px}.panel{padding:17px}}
+@media print{body{background:#fff}.wrap{max-width:none;padding:0}.hero{box-shadow:none}.panel{box-shadow:none;break-inside:avoid}.groups{display:none}.aspects{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="orb"></div>
+    <div class="eyebrow">SOCIAL STUDIES · GRADE 6</div>
+    <h1>경제성장 문제 해결 연구소</h1>
+    <p>경제성장으로 발생한 문제를 어떻게 해결할 수 있을까요?<br>정부, 기업, 사회, 개인의 네 가지 측면에서 해결 방법을 탐색하고 활동지에 정리해 봅시다.</p>
+  </header>
+
+  <section class="panel">
+    <div class="section-head"><div class="num">1</div><h2>우리 모둠의 문제 확인하기</h2></div>
+    <p class="sub">선생님이 안내한 모둠을 선택하면 우리 모둠이 해결할 문제가 나타납니다.</p>
+    <div class="groups" id="groups"></div>
+  </section>
+
+  <section class="panel">
+    <div class="section-head"><div class="num">2</div><h2>문제 상황 살펴보기</h2></div>
+    <div class="problem-box">
+      <div class="problem-icon" id="problemIcon">⚖️</div>
+      <div><h3 id="problemTitle">빈부격차</h3><p id="problemDesc"></p></div>
+    </div>
+  </section>
+
+  <section class="panel">
+    <div class="section-head"><div class="num">3</div><h2>네 가지 측면에서 해결 방법 탐색하기</h2></div>
+    <p class="sub">각 측면의 역할과 유용한 추천 사이트를 탐색하며 해결 아이디어를 활동지에 작성해 보세요.</p>
+    <div class="aspects" id="aspects"></div>
+    <div class="status" id="status" aria-live="polite">각 측면의 참고 사이트를 탐색하고 모둠원과 함께 해결 방법을 토의해 보세요.</div>
+  </section>
+
+  <div class="footer">함께 생각하고, 근거를 들어 말하고, 서로 협력하여 더 나은 해결 방법을 찾아요.</div>
+</div>
+
+<script>
+const missions = [
+ {name:"1모둠",short:"빈부격차",icon:"⚖️",desc:"경제가 성장해도 사람마다 소득과 생활 기회가 달라 격차가 커질 수 있습니다. 더 많은 사람이 필요한 기회와 자원에 공정하게 접근할 방법을 찾아보세요.",
+  aspects:[
+   ["🏛️","정부 측면","법과 제도, 복지 정책 및 공공 지원을 통해 사회적 격차를 줄입니다.",
+    [{title:"보건복지부 (복지정책)",url:"https://www.mohw.go.kr"},{title:"대한민국 정책브리핑",url:"https://www.korea.kr"}]],
+   ["🏢","기업 측면","공정한 임금 체계, 일자리 창출, 사회공헌 활동으로 격차 완화에 기여합니다.",
+    [{title:"국민권익위원회",url:"https://www.acrc.go.kr"},{title:"KOTRA 사회공헌 정보",url:"https://www.kotra.or.kr"}]],
+   ["🤝","사회 측면","시민단체와 지역사회가 이웃을 돕고 모금 및 나눔 활동을 실천합니다.",
+    [{title:"사랑의열매 사회복지공동모금회",url:"https://www.chest.or.kr"},{title:"대한적십자사",url:"https://www.redcross.or.kr"}]],
+   ["🧑","개인 측면","일상에서 물품 나눔과 봉사를 실천하고 서로 존중하는 태도를 가집니다.",
+    [{title:"1365 자원봉사포털",url:"https://www.1365.go.kr"},{title:"아름다운가게",url:"https://www.beautifulstore.org"}]
+   ]
+  ]},
+ {name:"2모둠",short:"환경오염",icon:"🌍",desc:"공장과 자동차가 늘고 생산과 소비가 많아지면서 공기와 물이 오염될 수 있습니다. 오염을 줄이고 환경을 지킬 방법을 찾아보세요.",
+  aspects:[
+   ["🏛️","정부 측면","환경 법규 마련, 오염 물질 배출 단속, 대중교통 및 재활용 기반 시설을 확대합니다.",
+    [{title:"환경부 어린이 홈페이지",url:"https://www.me.go.kr/kids"},{title:"한국환경공단",url:"https://www.keco.or.kr"}]],
+   ["🏢","기업 측면","친환경 제품 생산, 과대포장 축소, 오염 저감 장치 도입으로 환경 부담을 줄입니다.",
+    [{title:"친환경제품 정보망",url:"https://www.greenproduct.go.kr"},{title:"한국기후·환경네트워크",url:"https://www.kcen.kr"}]],
+   ["🤝","사회 측면","환경단체와 주민들이 환경 정화 캠페인 및 일회용품 줄이기 운동을 펼칩니다.",
+    [{title:"환경운동연합",url:"https://kfem.or.kr"},{title:"녹색연합",url:"https://www.greenkorea.org"}]],
+   ["🧑","개인 측면","분리배출 실천, 텀블러·장바구니 사용, 에너지 절약 생활습관을 가집니다.",
+    [{title:"우리집 탄소중립 실천 (환경부)",url:"https://www.gihoo.or.kr"},{title:"내 손안의 분리배출 앱 안내",url:"https://www.me.go.kr"}]
+   ]
+  ]},
+ {name:"3모둠",short:"노사갈등",icon:"🤝",desc:"기업과 근로자는 임금, 근무 시간, 작업 환경 등을 두고 서로 다른 생각을 가질 수 있습니다. 서로의 의견을 듣고 공정하게 해결할 방법을 찾아보세요.",
+  aspects:[
+   ["🏛️","정부 측면","근로기준법 제정, 최저임금 관리, 중앙노동위원회를 통한 갈등 중재를 담당합니다.",
+    [{title:"고용노동부",url:"https://www.moel.go.kr"},{title:"중앙노동위원회",url:"https://www.nlrc.go.kr"}]],
+   ["🏢","기업 측면","안전한 근무 환경 조성, 정기적 대화 채널 마련, 공정한 성과 보상을 제공합니다.",
+    [{title:"한국산업안전보건공단",url:"https://www.kosha.or.kr"},{title:"노사발전재단",url:"https://www.nosa.or.kr"}]],
+   ["🤝","사회 측면","노동 관련 단체와 공공 기관이 대화와 협상을 돕고 권리 교육을 실시합니다.",
+    [{title:"대한상공회의소",url:"https://www.korcham.net"},{title:"한국노동연구원",url:"https://www.kli.re.kr"}]],
+   ["🧑","개인 측면","서로의 입장을 존중하고 대화로 문제를 해결하며 각자의 책임과 권리를 준수합니다.",
+    [{title:"청소년 근로권익센터",url:"https://www.youthlabor.co.kr"},{title:"국가인권위원회",url:"https://www.humanrights.go.kr"}]
+   ]
+  ]},
+ {name:"4모둠",short:"과소비",icon:"🛍️",desc:"물건을 필요 이상으로 많이 사면 가계의 부담이 커지고 자원과 에너지도 낭비될 수 있습니다. 합리적인 소비를 돕는 방법을 찾아보세요.",
+  aspects:[
+   ["🏛️","정부 측면","소비자 보호 법률 제정, 가격 및 상품 정보 공개, 올바른 경제교육을 제공합니다.",
+    [{title:"공정거래위원회",url:"https://www.ftc.go.kr"},{title:"한국소비자원",url:"https://www.kca.go.kr"}]],
+   ["🏢","기업 측면","과장 광고 자제, 과대포장 감축, 내구성이 높은 제품을 개발하고 판매합니다.",
+    [{title:"소비자24 (상품·안전정보)",url:"https://www.consumer.go.kr"},{title:"한국자원순환공사",url:"https://www.keco.or.kr"}]],
+   ["🤝","사회 측면","소비자단체가 불합리한 소비 문화 개선 캠페인과 알뜰 나눔 장터를 개최합니다.",
+    [{title:"한국소비자단체협의회",url:"https://www.consumer.or.kr"},{title:"녹색소비자연대",url:"https://www.gcn.or.kr"}]],
+   ["🧑","개인 측면","용돈 기입장 쓰기, 구매 전 필요성 점검, 물건 아껴쓰기 및 재활용을 실천합니다.",
+    [{title:"금융감독원 금융교육국",url:"https://www.fss.or.kr/edu"},{title:"한국은행 어린이 경제교실",url:"https://www.bok.or.kr/kids"}]
+   ]
+  ]},
+ {name:"5모둠",short:"지역 격차",icon:"🏙️",desc:"경제성장이 대도시를 중심으로 이루어지면 일자리와 교육·문화 시설이 일부 지역에 집중되고, 다른 지역은 생활 기회가 부족해질 수 있습니다. 지역마다 필요한 기회와 서비스를 고르게 누릴 방법을 찾아보세요.",
+  aspects:[
+   ["🏛️","정부 측면","지역 균형발전 정책 추진, 지방 도로·교통 확충, 지역 교육·의료 시설을 지원합니다.",
+    [{title:"국토교통부",url:"https://www.molit.go.kr"},{title:"지방시대위원회",url:"https://www.region.go.kr"}]],
+   ["🏢","기업 측면","지방 사업장 및 공장 설립, 지역 인재 채용, 지역 특산물 유통망을 지원합니다.",
+    [{title:"중소벤처기업부",url:"https://www.mss.go.kr"},{title:"농협몰 (지역 특산물)",url:"https://www.nonghyupmall.com"}]],
+   ["🤝","사회 측면","지역 주민 공동체 활성화, 지역 문화 축제 홍보, 봉사단체의 농어촌 지원을 펼칩니다.",
+    [{title:"행정안전부 마을기업",url:"https://www.mois.go.kr"},{title:"한국농어촌공사",url:"https://www.ekr.or.kr"}]],
+   ["🧑","개인 측면","지역 생산품 및 농산물 이용하기, 지역 문화행사 참여 및 지역에 관심 갖기를 실천합니다.",
+    [{title:"대한민국 구석구석 (관광공사)",url:"https://korean.visitkorea.or.kr"},{title:"지방자치단체 홍보관",url:"https://www.gov.kr"}]
+   ]
+  ]}
+];
+
+let activeMission = 0;
+const groups = document.getElementById('groups');
+const aspects = document.getElementById('aspects');
+
+function renderGroups(){
+ groups.innerHTML = '';
+ missions.forEach((m, i) => {
+  const b = document.createElement('button');
+  b.className = 'group-btn' + (i === activeMission ? ' active' : '');
+  b.innerHTML = `${m.name}<small>${m.short}</small>`;
+  b.addEventListener('click', () => { activeMission = i; renderGroups(); renderMission(); });
+  groups.appendChild(b);
+ });
+}
+
+function renderMission(){
+ const m = missions[activeMission];
+ document.getElementById('problemIcon').textContent = m.icon;
+ document.getElementById('problemTitle').textContent = m.short;
+ document.getElementById('problemDesc').textContent = m.desc;
+ aspects.innerHTML = '';
+ 
+ m.aspects.forEach(a => {
+  const card = document.createElement('article');
+  card.className = 'aspect';
+  
+  const linksHtml = a[3].map(link => 
+    `<li><a href="${link.url}" target="_blank" rel="noopener noreferrer">🔗 ${link.title}</a></li>`
+  ).join('');
+
+  card.innerHTML = `
+    <div>
+      <div class="aspect-head">
+        <div class="aspect-icon">${a[0]}</div>
+        <h3>${a[1]}</h3>
+      </div>
+      <p>${a[2]}</p>
+    </div>
+    <div class="resources">
+      <strong>🔎 추천 참고 사이트</strong>
+      <ul>${linksHtml}</ul>
+    </div>
+  `;
+  aspects.appendChild(card);
+ });
+}
+
+renderGroups();
+renderMission();
+</script>
+</body>
+</html>
+```eof
+
+요청하신 내용대로 수정 및 재구성이 완료되었습니다! 추가로 수정이 필요한 부분이 있다면 언제든 말씀해 주세요.
