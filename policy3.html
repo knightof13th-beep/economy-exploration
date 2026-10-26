@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>경제성장 문제 해결 정책 입안실</title>
+<style>
+  :root {
+    --ink: #203047;
+    --muted: #627087;
+    --paper: #ffffff;
+    --bg: #f2f6fb;
+    --blue: #3568c8;
+    --blue-dark: #254f9d;
+    --line: #dce5f0;
+    --pale: #eaf1ff;
+    --green: #e8f5ee;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Noto Sans KR", "Malgun Gothic", sans-serif;
+    color: var(--ink);
+    background: linear-gradient(180deg, #eaf1ff 0, var(--bg) 280px);
+    line-height: 1.65;
+  }
+  .wrap { width: min(900px, calc(100% - 32px)); margin: 0 auto; padding: 32px 0 48px; }
+  header { text-align: center; padding: 18px 8px 26px; }
+  .eyebrow { color: var(--blue); font-weight: 800; letter-spacing: .08em; font-size: .82rem; }
+  h1 { margin: 8px 0; font-size: clamp(1.8rem, 4vw, 2.6rem); line-height: 1.25; }
+  .subtitle { max-width: 620px; margin: 0 auto; color: var(--muted); }
+  .card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: 22px;
+    padding: clamp(20px, 4vw, 32px); margin-top: 18px;
+    box-shadow: 0 10px 30px rgba(35, 61, 100, .06);
+  }
+  .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 18px 0 24px; }
+  .step { background: #f6f8fc; border-radius: 12px; padding: 12px; text-align: center; font-size: .9rem; color: var(--muted); }
+  .step b { display: block; color: var(--blue); font-size: .78rem; margin-bottom: 3px; }
+  label { display: block; font-weight: 800; margin: 18px 0 7px; }
+  .hint { display: block; font-size: .88rem; color: var(--muted); font-weight: 400; margin-top: 2px; }
+  input, textarea, select {
+    width: 100%; border: 1.5px solid #cdd8e7; border-radius: 12px;
+    padding: 13px 14px; font: inherit; color: var(--ink); background: #fff;
+    outline: none; transition: border .15s, box-shadow .15s;
+  }
+  input:focus, textarea:focus, select:focus { border-color: var(--blue); box-shadow: 0 0 0 3px rgba(53,104,200,.12); }
+  textarea { min-height: 94px; resize: vertical; }
+  select { min-height: 50px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  button {
+    border: 0; border-radius: 12px; padding: 12px 18px; font: inherit; font-weight: 800;
+    cursor: pointer; min-height: 46px;
+  }
+  .primary { background: var(--blue); color: white; flex: 1; }
+  .primary:hover { background: var(--blue-dark); }
+  .secondary { background: #edf1f7; color: var(--ink); }
+  .note { font-size: .84rem; color: var(--muted); margin: 13px 0 0; }
+  .result-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  h2 { font-size: 1.25rem; margin: 0; }
+  .tag { display: inline-block; background: var(--green); color: #236744; border-radius: 999px; padding: 4px 10px; font-size: .78rem; font-weight: 800; }
+  #story { white-space: pre-wrap; background: #fbfcff; border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin-top: 16px; min-height: 150px; }
+  #story.empty { color: #8793a5; }
+  .reminder { background: var(--pale); border-radius: 14px; padding: 14px 16px; margin-top: 18px; font-size: .92rem; }
+  footer { text-align: center; color: var(--muted); font-size: .82rem; margin-top: 24px; }
+  @media (max-width: 560px) { .steps { grid-template-columns: 1fr; } .wrap { width: min(100% - 20px, 900px); padding-top: 18px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">6학년 사회 · 경제성장과 우리 생활</div>
+    <h1>경제성장 문제 해결<br>정책 입안실</h1>
+    <p class="subtitle">우리 모둠은 정책입안자입니다!<br>경제성장으로 발생한 문제와 해결 방안을 바탕으로 실천할 수 있는 정책 한 가지를 제안해 봅시다.</p>
+  </header>
+
+  <section class="card" aria-labelledby="inputTitle">
+    <h2 id="inputTitle">우리 모둠의 정책 구상</h2>
+    <div class="steps">
+      <div class="step"><b>STEP 1</b>문제 확인하기</div>
+      <div class="step"><b>STEP 2</b>실행 주체 정하기</div>
+      <div class="step"><b>STEP 3</b>해결 방법 정하기</div>
+      <div class="step"><b>STEP 4</b>기대 변화 생각하기</div>
+    </div>
+
+    <form id="storyForm">
+      <label for="problem">1. 우리가 해결할 문제
+        <span class="hint">어떤 문제를 해결하려고 하나요?</span>
+      </label>
+      <input id="problem" maxlength="100" placeholder="예: 지역 격차" required>
+
+      <label for="actor">2. 정책을 실행할 주체
+        <span class="hint">누가 이 정책을 실행하면 좋을까요?</span>
+      </label>
+      <select id="actor" required>
+        <option value="">정책 실행 주체를 선택하세요.</option>
+        <option value="정부와 공공기관">정부와 공공기관</option>
+        <option value="기업">기업</option>
+        <option value="사회단체와 지역사회">사회단체와 지역사회</option>
+        <option value="개인과 시민">개인과 시민</option>
+      </select>
+
+      <label for="solution">3. 구체적인 해결 방법
+        <span class="hint">누가 무엇을 어떻게 할지, 실제 행동이 드러나도록 적어 주세요.</span>
+      </label>
+      <textarea id="solution" maxlength="500" placeholder="예: 농어촌 학생들에게 온라인 수업용 태블릿을 지원한다." required></textarea>
+
+      <label for="effectInput">4. 정책이 실행되면 기대하는 변화
+        <span class="hint">누구의 생활이 어떻게 달라질까요?</span>
+      </label>
+      <textarea id="effectInput" maxlength="400" placeholder="예: 농어촌 학생들도 다양한 온라인 학습 자료를 이용할 수 있어 지역에 따른 교육 기회 차이가 줄어든다." required></textarea>
+
+      <div class="actions">
+        <button class="primary" type="submit">정책 입안하기 ✨</button>
+        <button class="secondary" type="button" id="exampleBtn">예시 넣기</button>
+        <button class="secondary" type="reset">다시 쓰기</button>
+      </div>
+      <p class="note">모둠에서 토의한 내용을 바탕으로 입력해 주세요. 생성된 문장을 읽고 우리 모둠의 생각과 맞는지 확인해 봅시다.</p>
+    </form>
+  </section>
+
+  <section class="card" aria-labelledby="resultTitle" aria-live="polite">
+    <div class="result-head">
+      <h2 id="resultTitle">우리 모둠의 정책 제안서</h2>
+      <span class="tag">정책 입안 결과</span>
+    </div>
+    <div id="story" class="empty">아직 정책이 만들어지지 않았어요. 위의 네 가지 내용을 입력하고 ‘정책 입안하기’를 눌러 보세요.</div>
+    <div class="actions">
+      <button class="secondary" type="button" id="copyBtn">정책 제안서 복사하기</button>
+      <button class="secondary" type="button" id="downloadBtn">정책 제안서 저장하기</button>
+    </div>
+    <div class="reminder"><b>마지막 확인!</b><br>정책명이 우리 모둠의 해결 방법을 잘 나타내는지, 정책 내용이 세 문장으로 간결하게 정리되었는지, 기대 효과가 우리 모둠의 생각을 잘 반영하는지 확인해 봅시다.</div>
+  </section>
+  <footer>사회 수업 활동용 정책 입안 도구</footer>
+</div>
+
+<script>
+const form = document.getElementById('storyForm');
+const problem = document.getElementById('problem');
+const actor = document.getElementById('actor');
+const solution = document.getElementById('solution');
+const effectInput = document.getElementById('effectInput');
+const story = document.getElementById('story');
+
+function cleanText(value) {
+  return value.trim().replace(/[.!?。]+$/g, '');
+}
+
+function makePolicy(p, a, s, e) {
+  const problemText = cleanText(p);
+  const solutionText = cleanText(s);
+  const effectText = cleanText(e);
+
+  // 입력한 해결 방법의 핵심어를 찾아 정책 목적이 드러나는 정책명을 구성합니다.
+  const titleRules = [
+    [/온라인 학습|온라인 수업|태블릿|학습 기기|교육 기기|교육 시설|학습 시설|디지털|컴퓨터|인터넷/, '디지털 학습 기회 보장'],
+    [/장학금|교육비|학비|학습비|수업료|교육 비용/, '교육비 부담 완화'],
+    [/일자리|취업|고용|직업 교육|직업 훈련/, '일자리 기회 확대'],
+    [/임금|급여|노동 시간|근로 시간|근로 환경|노동.*권리|노사|안전한 일터/, '노동권 보호와 근로 환경 개선'],
+    [/분리배출|재활용|일회용품|쓰레기|폐기물/, '자원순환 실천 확대'],
+    [/탄소|배출|친환경|오염|환경 보호|에너지 절약|공원|숲/, '환경 보호와 지속 가능한 생활 조성'],
+    [/광고|충동구매|소비 습관|계획 소비|합리적 소비|소비 교육/, '합리적 소비 문화 조성'],
+    [/기부|나눔|봉사|복지|취약 계층|돌봄/, '복지와 나눔 지원 확대'],
+    [/교통|도로|버스|이동 편의|대중교통/, '교통 접근성 개선'],
+    [/의료|병원|건강 서비스|진료/, '의료 접근성 개선'],
+    [/문화 시설|공공 시설|생활 시설|지역.*시설|농촌|농어촌|지역 균형/, '지역 생활 기반 확충'],
+    [/예산|지원금|보조금|재정 지원|기금/, '맞춤형 지원 확대'],
+    [/캠페인|홍보|알리기|안내|교육 프로그램|수업|교육/, '교육과 인식 개선']
+  ];
+  let focus = '';
+  for (const [pattern, label] of titleRules) {
+    if (pattern.test(solutionText)) { focus = label; break; }
+  }
+  if (!focus) {
+    const keywords = solutionText
+      .replace(/^(정부와 공공기관|정부|기업|사회단체와 지역사회|사회단체|지역사회|개인과 시민|개인|시민|학교|학생|우리 모둠)(은|는|이|가|에서|에게|을|를)?\s*/, '')
+      .replace(/(한다|합니다|한다는|하기|하도록|위해|통해|할 수 있도록).*$/,'')
+      .split(/[ ,.。]/).filter(Boolean).slice(0, 2).join(' ');
+    focus = keywords ? `${keywords} 지원 및 개선` : '생활 여건 개선';
+  }
+  const title = `${problemText} 해결을 위한 ${focus} 정책`;
+
+  const actorSubject = ({
+    '정부와 공공기관': '정부와 공공기관은',
+    '기업': '기업은',
+    '사회단체와 지역사회': '사회단체와 지역사회는',
+    '개인과 시민': '개인과 시민은'
+  })[a] || `${a}는`;
+
+  // 학생 문장을 단순 복사하지 않고 정책 실행 과제로 재구성합니다.
+  function buildAction(text) {
+    let t = cleanText(text)
+      .replace(/^(정부와 공공기관|정부|기업|사회단체와 지역사회|사회단체|지역사회|개인과 시민|개인|시민|학교|학생|우리 모둠)(은|는|이|가)\s*/, '')
+      .replace(/^(적극적으로|함께|꾸준히|정기적으로)\s*/, '');
+    t = t.replace(/에게\s+/g, '을 대상으로 ');
+    if (/지원한다$/.test(t)) t = t.replace(/지원한다$/, '지원하는 사업을 추진한다');
+    else if (/제공한다$/.test(t)) t = t.replace(/제공한다$/, '제공하는 지원 체계를 마련한다');
+    else if (/설치한다$/.test(t)) t = t.replace(/설치한다$/, '설치하고 지속적으로 운영한다');
+    else if (/알린다$/.test(t)) t = t.replace(/알린다$/, '알리는 교육·홍보 활동을 운영한다');
+    else if (/교육한다$/.test(t)) t = t.replace(/교육한다$/, '교육 프로그램으로 체계화해 운영한다');
+    else if (/만든다$/.test(t)) t = t.replace(/만든다$/, '마련하고 지속적으로 운영한다');
+    else if (/늘린다$/.test(t)) t = t.replace(/늘린다$/, '확대하는 방안을 시행한다');
+    else if (/줄인다$/.test(t)) t = t.replace(/줄인다$/, '줄이기 위한 실천 방안을 시행한다');
+    else if (/개선한다$/.test(t)) t = t.replace(/개선한다$/, '개선하는 사업을 추진한다');
+    else if (/한다$/.test(t)) t = t.replace(/한다$/, '실행하는 사업을 추진한다');
+    else if (!/(추진한다|운영한다|마련한다|시행한다|확대한다|실시한다|지원한다|제공한다|개선한다)$/.test(t)) t += '을 실현하기 위한 사업을 추진한다';
+    return t.charAt(0).toLowerCase() + t.slice(1);
+  }
+  let action = buildAction(solutionText);
+  // 문장 시작이 어색한 조사로 시작하는 경우를 보정합니다.
+  action = action.replace(/^(을|를|이|가|은|는)\s*/, '');
+
+  const policyContent = `${actorSubject} ${problemText} 문제의 원인을 줄이고 필요한 지원이 이루어지도록 정책을 추진한다. 구체적으로는 ${action} 실행 과정에서 도움이 필요한 대상과 현장의 의견을 살펴 지원 방법을 조정한다.`;
+
+  // 기대 변화는 학생이 적은 내용을 출발점으로 삼되, 정책 시행 후의 변화로 정리합니다.
+  function interpretEffect(text) {
+    let t = cleanText(text)
+      .replace(/^(이를 통해|그 결과|그러면|따라서)\s*/, '')
+      .replace(/줄어든다$/, '줄어들 것으로 기대된다')
+      .replace(/감소한다$/, '감소할 것으로 기대된다')
+      .replace(/늘어난다$/, '늘어날 것으로 기대된다')
+      .replace(/높아진다$/, '높아질 것으로 기대된다')
+      .replace(/개선된다$/, '개선될 것으로 기대된다')
+      .replace(/달라진다$/, '긍정적으로 변화할 것으로 기대된다')
+      .replace(/할 수 있다$/, '할 수 있을 것으로 기대된다')
+      .replace(/줄어든다$/, '줄어들 것으로 기대된다')
+      .replace(/된다$/, '될 것으로 기대된다');
+    if (!/(기대된다|기대할 수 있다|것이다|될 것으로)/.test(t)) t += '라는 변화가 나타날 것으로 기대된다';
+    return t;
+  }
+  const interpretedEffect = interpretEffect(effectText);
+  const expectedEffect = `정책이 시행되면 ${interpretedEffect}. 이를 통해 ${problemText}로 인한 어려움을 줄이고, 관련된 사람들의 생활 여건과 기회를 더 공정하게 만드는 데 도움이 될 것으로 기대된다.`;
+
+  return `정책명: ${title}\n\n1. 정책 내용\n${policyContent}\n\n2. 기대 효과\n${expectedEffect}`;
+}
+
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  const p = problem.value.trim();
+  const a = actor.value;
+  const s = solution.value.trim();
+  const e = effectInput.value.trim();
+  if (!p || !a || !s || !e) {
+    alert('네 가지 내용을 모두 입력해 주세요.');
+    return;
+  }
+  story.textContent = makePolicy(p, a, s, e);
+  story.classList.remove('empty');
+  document.getElementById('resultTitle').scrollIntoView({ behavior: 'smooth', block: 'center' });
+});
+
+document.getElementById('exampleBtn').addEventListener('click', () => {
+  problem.value = '지역 격차';
+  actor.value = '정부와 공공기관';
+  solution.value = '농어촌 학생들에게 온라인 수업용 태블릿을 지원한다.';
+  effectInput.value = '농어촌 학생들도 다양한 온라인 학습 자료를 이용할 수 있어 지역에 따른 교육 기회 차이가 줄어든다.';
+});
+
+document.getElementById('copyBtn').addEventListener('click', async () => {
+  const text = story.classList.contains('empty') ? '' : story.textContent;
+  if (!text) { alert('먼저 정책 제안서를 만들어 주세요.'); return; }
+  try {
+    await navigator.clipboard.writeText(text);
+    alert('정책 제안서를 복사했어요. 원하는 곳에 붙여 넣으세요.');
+  } catch (e) {
+    const range = document.createRange();
+    range.selectNodeContents(story);
+    const selection = window.getSelection();
+    selection.removeAllRanges();
+    selection.addRange(range);
+    alert('정책 제안서를 선택했어요. 복사(Ctrl+C)해 주세요.');
+  }
+});
+
+document.getElementById('downloadBtn').addEventListener('click', () => {
+  if (story.classList.contains('empty')) { alert('먼저 정책 제안서를 만들어 주세요.'); return; }
+  const blob = new Blob([story.textContent], { type: 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = '우리모둠의_정책_제안서.txt';
+  a.click();
+  URL.revokeObjectURL(url);
+});
+
+form.addEventListener('reset', () => {
+  setTimeout(() => {
+    story.textContent = '아직 정책이 만들어지지 않았어요. 위의 네 가지 내용을 입력하고 ‘정책 입안하기’를 눌러 보세요.';
+    story.classList.add('empty');
+  }, 0);
+});
+</script>
+</body>
+</html>
